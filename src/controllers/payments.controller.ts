@@ -48,7 +48,7 @@ const paymentsController =  {
                                 return;
                             }
                         
-                            axios.patch(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/${userId}/wallet/l0llmfa0123321/${6 || body["amount"]}/?payload=${dataObjAsJsonStr}`)
+                            axios.patch(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/${userId}/wallet/l0llmfa0123321/${6}/?payload=${dataObjAsJsonStr}`)
                             .then(({data:result}) => {
 
                                 if (!result) {
