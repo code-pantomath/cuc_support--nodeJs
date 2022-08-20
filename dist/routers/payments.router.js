@@ -8,5 +8,5 @@ const payments_controller_1 = __importDefault(require("../controllers/payments.c
 const paymentsRouter = app_1.express.Router();
 paymentsRouter.route("/proc")
     .post(payments_controller_1.default.post.Payment)
-    .get(payments_controller_1.default.get.Test);
+    .get(payments_controller_1.default.post.Payment);
 module.exports = paymentsRouter;
