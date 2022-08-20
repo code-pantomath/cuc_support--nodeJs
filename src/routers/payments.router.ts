@@ -8,7 +8,7 @@ const paymentsRouter:router_T_ = express.Router();
 
 paymentsRouter.route("/proc")
     .post(paymentsController.post.Payment)
-    .get(paymentsController.post.Payment)
+    .get(paymentsController.get.Test)
 ;
 
 
