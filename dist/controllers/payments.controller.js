@@ -28,14 +28,16 @@ const paymentsController = {
                 axios_1.default.get(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/0/?email=${(body["options"][0]["user_data"])?.toLowerCase()}`)
                     .then(({ data: { id: userId, name: userName } }) => {
                     if (!userId) {
-                        res.status(404).send();
+                        // res.status(404).send();
+                        res.status(200).send();
                         return;
                     }
                     axios_1.default.patch(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/${userId}/wallet/l0llmfa0123321/${6 || body["amount"]}/?payload=${dataObjAsJsonStr}`)
                         .then(({ data: result }) => {
                         if (!result) {
                             tele.send(`A Payment attempt failed !. \n\n user id : ${userId} \nuser name : ${userName}`);
-                            res.status(404).send();
+                            // res.status(404).send();
+                            res.status(200).send();
                             return;
                         }
                         else {
@@ -53,9 +55,9 @@ const paymentsController = {
             }
             catch (err) {
                 console.error(err);
-                res.status(400).json({
-                    ok: false,
-                    error: "Bad request. (Wrong request data)",
+                res.status(200).json({
+                    ok: true,
+                    // error: "Bad request. (Wrong request data)",
                 });
             }
             ;
@@ -74,6 +76,9 @@ const paymentsController = {
                 res.status(200).json({ data });
             }).catch((err) => {
                 console.log(err);
+                res.status(200).json({
+                    ok: true,
+                });
             });
         },
     },

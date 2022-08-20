@@ -1,7 +1,8 @@
 {
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx tsc & pm2 start dist/index.js -f -i max & pm2 save"
+    "build": "npx tsc",
+    "start": "pm2 start dist/index.js -f -i max & pm2 save"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

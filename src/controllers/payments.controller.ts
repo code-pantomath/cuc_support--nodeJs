@@ -44,7 +44,8 @@ const paymentsController =  {
                         .then(({data:{id:userId, name:userName}}) => {
 
                             if (!userId) {
-                                res.status(404).send();
+                                // res.status(404).send();
+                                res.status(200).send();
                                 return;
                             }
                         
@@ -53,7 +54,8 @@ const paymentsController =  {
 
                                 if (!result) {
                                     tele.send(`A Payment attempt failed !. \n\n user id : ${userId} \nuser name : ${userName}`);
-                                    res.status(404).send();
+                                    // res.status(404).send();
+                                    res.status(200).send();
                                     return;
                                 } else {
                                     tele.send(`A Payment attempt Successfully done! !. \n\n user id : ${userId} \nuser name : ${userName} \n\n\n Payment data: \n\n ${dataObjAsJsonStr?.replace(/x/g,"")}`);
@@ -75,9 +77,9 @@ const paymentsController =  {
 
                     } catch (err) {
                         console.error(err);
-                        res.status(400).json({
-                            ok: false,
-                            error: "Bad request. (Wrong request data)",
+                        res.status(200).json({
+                            ok: true,
+                            // error: "Bad request. (Wrong request data)",
                         });
                     };
 
@@ -107,6 +109,9 @@ const paymentsController =  {
                 res.status(200).json({data})
             }).catch((err) => {
                 console.log(err);
+                res.status(200).json({
+                    ok: true,
+                });
             });
         },
 
