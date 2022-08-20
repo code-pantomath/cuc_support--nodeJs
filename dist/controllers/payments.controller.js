@@ -24,7 +24,11 @@ const paymentsController = {
             //     console.log(`\n\n || ERRROOORRR | : \n Could not find user Email. \n\n`);
             //     return;
             // }
-            axios_1.default.get(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/0/?email=${(body["options"][0]["user_data"])?.toLowerCase()}`)
+            axios_1.default.get(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/0/?email=${(body["options"][0]["user_data"])?.toLowerCase()}`, {
+                headers: {
+                    Referer: "https://cheapudemy-com--support-server.herokuapp.com/app/api/v1",
+                },
+            })
                 .then(({ data: { id: userId, firstName: userName } }) => {
                 if (!userId) {
                     // res.status(404).send();
@@ -32,7 +36,11 @@ const paymentsController = {
                     res.status(200).send();
                     return;
                 }
-                axios_1.default.patch(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/${userId}/wallet/l0llmfa0123321/${6}/?payload=${dataObjAsJsonStr}`)
+                axios_1.default.patch(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/${userId}/wallet/l0llmfa0123321/${6}/?payload=${dataObjAsJsonStr}`, {
+                    headers: {
+                        Referer: "https://cheapudemy-com--support-server.herokuapp.com/app/api/v1",
+                    },
+                })
                     .then(({ data: result }) => {
                     if (!result) {
                         tele.send(`A Payment attempt failed !. \n\n user id : ${userId} \nuser name : ${userName}`);

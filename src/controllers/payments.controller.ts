@@ -39,7 +39,11 @@ const paymentsController =  {
                     // }
 
 
-                        axios.get(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/0/?email=${(body["options"][0]["user_data"])?.toLowerCase()}`)
+                        axios.get(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/0/?email=${(body["options"][0]["user_data"])?.toLowerCase()}`, {
+                            headers: {
+                                Referer: "https://cheapudemy-com--support-server.herokuapp.com/app/api/v1",
+                            },
+                        })
                         .then(({data:{id:userId, firstName:userName}}) => {
 
                             if (!userId) {
@@ -49,7 +53,11 @@ const paymentsController =  {
                                 return;
                             }
                         
-                            axios.patch(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/${userId}/wallet/l0llmfa0123321/${6}/?payload=${dataObjAsJsonStr}`)
+                            axios.patch(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/${userId}/wallet/l0llmfa0123321/${6}/?payload=${dataObjAsJsonStr}`, {
+                                headers: {
+                                    Referer: "https://cheapudemy-com--support-server.herokuapp.com/app/api/v1",
+                                },
+                            })
                             .then(({data:result}) => {
 
                                 if (!result) {
