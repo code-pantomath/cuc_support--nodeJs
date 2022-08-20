@@ -39,7 +39,6 @@ const paymentsController =  {
                     // }
 
 
-                    try {
                         axios.get(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/0/?email=${(body["options"][0]["user_data"])?.toLowerCase()}`)
                         .then(({data:{id:userId, name:userName}}) => {
 
@@ -71,17 +70,19 @@ const paymentsController =  {
                                 });
 
                         
+                            }).catch(() => {
+                                res.status(200).json({
+                                    ok: true,
+                                })
                             })
 
+                        }).catch(() => {
+                            res.status(200).json({
+                                ok: true,
+                            })
                         })
 
-                    } catch (err) {
-                        console.error(err);
-                        res.status(200).json({
-                            ok: true,
-                            // error: "Bad request. (Wrong request data)",
-                        });
-                    };
+
 
 
                     
