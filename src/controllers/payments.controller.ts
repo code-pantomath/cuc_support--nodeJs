@@ -114,7 +114,7 @@ const paymentsController =  {
         Test(req:req_T_, res:res_T_, next:nextFunc_T_): void {
             axios.get("https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/1/wallet", {
                 headers: {
-                    Referer: "https://cheapudemy-com--support-server.herokuapp.com/app/api/v1"
+                    Referer: "https://cheapudemy-com--support-server.herokuapp.com/app"
                 },
             })
             .then(({data}) => {
