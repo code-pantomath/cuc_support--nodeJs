@@ -25,9 +25,10 @@ const paymentsController = {
             //     return;
             // }
             axios_1.default.get(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/0/?email=${(body["options"][0]["user_data"])?.toLowerCase()}`)
-                .then(({ data: { id: userId, name: userName } }) => {
+                .then(({ data: { id: userId, firstName: userName } }) => {
                 if (!userId) {
                     // res.status(404).send();
+                    console.log("Could not get user id");
                     res.status(200).send();
                     return;
                 }
@@ -49,12 +50,14 @@ const paymentsController = {
                         goods: `Congrats ${userName || ""}!, you have charged your CheapUdemy.com credits wallet successfully!, you can now enjoy our services :)`,
                         error: `Oops! :(, an error occurred!, we couldn't find your wallet, check the data you have entered and try again or contact the support at: support@cheapudemy.com`,
                     });
-                }).catch(() => {
+                }).catch((err) => {
+                    console.log("ERROR \n \n", err);
                     res.status(200).json({
                         ok: true,
                     });
                 });
-            }).catch(() => {
+            }).catch((err) => {
+                console.log("ERROR \n \n", err);
                 res.status(200).json({
                     ok: true,
                 });
