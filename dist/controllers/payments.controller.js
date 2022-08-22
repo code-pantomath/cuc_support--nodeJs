@@ -12,7 +12,6 @@ const paymentsController = {
             const { body } = req;
             console.log(body);
             console.log(req.headers);
-            console.log(req.hostname);
             console.log("wow");
             const clientIp = requestIp.getClientIp(req);
             const refr = req.headers.referer;
@@ -66,7 +65,7 @@ const paymentsController = {
                         id: body.id,
                         inv: body.inv,
                         goods: `Congrats ${userName || ""}!, you have charged your CheapUdemy.com credits wallet successfully!, you can now enjoy our services :)`,
-                        error: `Oops! :(, an error occurred!, we couldn't find your wallet, check the data you have entered and try again or contact the support at: support@cheapudemy.com`,
+                        // error: `Oops! :(, an error occurred!, we couldn't find your wallet, check the data you have entered and try again or contact the support at: support@cheapudemy.com`,
                     });
                 }).catch((err) => {
                     console.log("ERROR \n \n", err);
