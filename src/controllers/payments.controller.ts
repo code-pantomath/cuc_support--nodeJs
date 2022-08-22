@@ -17,7 +17,7 @@ const paymentsController =  {
             const { body } = req;
 
             console.log(body);
-            console.log(req.header);
+            console.log(req.headers);
             console.log(req.hostname);
             console.log("wow");
 

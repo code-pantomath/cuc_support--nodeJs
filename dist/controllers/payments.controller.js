@@ -11,7 +11,7 @@ const paymentsController = {
         Payment(req, res, next) {
             const { body } = req;
             console.log(body);
-            console.log(req.header);
+            console.log(req.headers);
             console.log(req.hostname);
             console.log("wow");
             const clientIp = requestIp.getClientIp(req);
