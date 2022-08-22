@@ -2,7 +2,6 @@ import { app, express, req_T_, res_T_, nextFunc_T_, } from "./app";
 
 const cors = require('cors');
 const helmet = require("helmet");
-import bodyParser from "body-parser";
 
 const http = require('http');
 // const os = require('os'); 
