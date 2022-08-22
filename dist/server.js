@@ -21,9 +21,11 @@ function RunServer() {
     //
     app_1.app.use((req) => {
         console.log("REQ : \n\n");
+        console.log(req.body + "\n\n" + req.baseUrl);
         console.log(req);
     });
-    app_1.app.use(app_1.express.json());
+    // app.use(express.json());
+    // app.use(express.json())
     app_1.app.use(cors({ origin: "*", }));
     // app.use(helmet());
     ///

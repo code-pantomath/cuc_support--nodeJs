@@ -29,10 +29,12 @@ export function RunServer(): void {
 
     app.use((req) => {
         console.log("REQ : \n\n")
+        console.log(req.body + "\n\n" + req.baseUrl);
         console.log(req);
     })
 
-    app.use(express.json());
+    // app.use(express.json());
+    // app.use(express.json())
     app.use(cors({ origin: "*", }));
     // app.use(helmet());
     ///
