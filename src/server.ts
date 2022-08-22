@@ -41,11 +41,16 @@ export function RunServer(): void {
     // app.use(express.json());
     // app.use(express.json())
 
+    // app.use((req, res, next) => {
+    //     // req.set
+    //     req.headers["content-type"] = "application/json";
+    // })
+
     //Configure and resolve the form request body. The type is: application / APP
-    app.use(express.json())
+    app.use(express.json({type:"text/json"}))
 
     //Parse the form request body. The type is: application / x-www-form-urlencoded
-    app.use(express.urlencoded())
+    app.use(express.urlencoded({ type: "text/json" }))
 
     app.use(cors({ origin: "*", }));
     // app.use(bodyParser.json({ type: 'application/*+json' }))

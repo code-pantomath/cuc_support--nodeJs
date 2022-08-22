@@ -28,10 +28,14 @@ function RunServer() {
     // })
     // app.use(express.json());
     // app.use(express.json())
+    // app.use((req, res, next) => {
+    //     // req.set
+    //     req.headers["content-type"] = "application/json";
+    // })
     //Configure and resolve the form request body. The type is: application / APP
-    app_1.app.use(app_1.express.json());
+    app_1.app.use(app_1.express.json({ type: "text/json" }));
     //Parse the form request body. The type is: application / x-www-form-urlencoded
-    app_1.app.use(app_1.express.urlencoded());
+    app_1.app.use(app_1.express.urlencoded({ type: "text/json" }));
     app_1.app.use(cors({ origin: "*", }));
     // app.use(bodyParser.json({ type: 'application/*+json' }))
     // app.use(bodyParser.urlencoded({
