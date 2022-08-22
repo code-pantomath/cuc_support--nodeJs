@@ -30,7 +30,11 @@ function RunServer() {
     // app.use(express.json());
     // app.use(express.json())
     app_1.app.use(cors({ origin: "*", }));
-    app_1.app.use(body_parser_1.default.json({ type: 'text/*+json' }));
+    // app.use(bodyParser.json({ type: 'application/*+json' }))
+    app_1.app.use(body_parser_1.default.urlencoded({
+        extended: true
+    }));
+    app_1.app.use(body_parser_1.default.json());
     // app.use(helmet());
     ///
     //

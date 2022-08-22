@@ -41,7 +41,11 @@ export function RunServer(): void {
     // app.use(express.json());
     // app.use(express.json())
     app.use(cors({ origin: "*", }));
-    app.use(bodyParser.json({ type: 'text/*+json' }))
+    // app.use(bodyParser.json({ type: 'application/*+json' }))
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
+    app.use(bodyParser.json());
 
     // app.use(helmet());
     ///
