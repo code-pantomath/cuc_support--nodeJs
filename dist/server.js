@@ -7,6 +7,7 @@ exports.RunServer = void 0;
 const app_1 = require("./app");
 const cors = require('cors');
 const helmet = require("helmet");
+const body_parser_1 = __importDefault(require("body-parser"));
 const http = require('http');
 // const os = require('os'); 
 // const cluster = require('cluster');
@@ -19,16 +20,17 @@ const MAIN_ROUTER = require("./routers/MAIN_ROUTER");
 function RunServer() {
     let SAV = statics_1.default.api.versions.v1;
     //
-    app_1.app.use((req, _, next) => {
-        console.log("REQ : \n\n");
-        console.log(req.body + "\n\n" + req.baseUrl);
-        console.log(req);
-        console.log(req?.data || "ff");
-        next();
-    });
+    // app.use((req, _, next) => {
+    //     console.log("REQ : \n\n")
+    //     console.log(req.body + "\n\n" + req.baseUrl);
+    //     console.log(req);
+    //     console.log((req as any)?.data || "ff")
+    //     next();
+    // })
     // app.use(express.json());
     // app.use(express.json())
     app_1.app.use(cors({ origin: "*", }));
+    app_1.app.use(body_parser_1.default.json({ type: 'text/*+json' }));
     // app.use(helmet());
     ///
     //

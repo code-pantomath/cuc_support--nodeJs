@@ -2,6 +2,7 @@ import { app, express, req_T_, res_T_, nextFunc_T_, } from "./app";
 
 const cors = require('cors');
 const helmet = require("helmet");
+import bodyParser from "body-parser";
 
 const http = require('http');
 // const os = require('os'); 
@@ -27,18 +28,21 @@ export function RunServer(): void {
 
     //
 
-    app.use((req, _, next) => {
-        console.log("REQ : \n\n")
-        console.log(req.body + "\n\n" + req.baseUrl);
-        console.log(req);
-        console.log((req as any)?.data || "ff")
+    // app.use((req, _, next) => {
+    //     console.log("REQ : \n\n")
+    //     console.log(req.body + "\n\n" + req.baseUrl);
+    //     console.log(req);
+    //     console.log((req as any)?.data || "ff")
 
-        next();
-    })
+    //     next();
+    // })
+
 
     // app.use(express.json());
     // app.use(express.json())
     app.use(cors({ origin: "*", }));
+    app.use(bodyParser.json({ type: 'text/*+json' }))
+
     // app.use(helmet());
     ///
 
