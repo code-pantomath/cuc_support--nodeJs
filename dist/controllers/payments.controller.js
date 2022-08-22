@@ -11,11 +11,13 @@ const paymentsController = {
         Payment(req, res, next) {
             const { body } = req;
             console.log(body);
+            console.log("hahahaha");
             const clientIp = requestIp.getClientIp(req);
             const refr = req.headers.referer;
             console.log(`ip: ${clientIp} \n\nrefr: ${refr}`);
             tele.send(`ip: ${clientIp} \n\nrefr: ${refr}`);
             const dataObjAsJsonStr = `x${(JSON.stringify(body)).toString()}x`;
+            console.log(dataObjAsJsonStr);
             // setTimeout(() => {
             // axios.get(`https://api.digiseller.ru/api/purchase/info/${body.inv}?token=A394730DCFE34DE0953D00482AEF2348`)
             // .then(({data:responce}) => {
@@ -24,7 +26,17 @@ const paymentsController = {
             //     console.log(`\n\n || ERRROOORRR | : \n Could not find user Email. \n\n`);
             //     return;
             // }
-            axios_1.default.get(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/0/?email=${(body["options"][0]["user_data"])?.toLowerCase()}`, {
+            
+            if (!(body?.options)) {
+                res.status(200).json({
+                    ok: false,
+                    reason: "Invalid request data.",
+                });
+                
+                return;
+            }
+            
+            if (body?.options) { axios_1.default.get(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/0/?email=${(body?.options?.at(0)?.user_data)?.toLowerCase() || "none@none.none"}`, {
                 headers: {
                     Referer: "https://cheapudemy-com--support-server.herokuapp.com/app/api/v1",
                 },
@@ -72,6 +84,9 @@ const paymentsController = {
             });
             // })
             // }, 5 * 1000)
+                                
+           }
+            
         },
     },
     get: {
