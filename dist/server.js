@@ -19,10 +19,12 @@ const MAIN_ROUTER = require("./routers/MAIN_ROUTER");
 function RunServer() {
     let SAV = statics_1.default.api.versions.v1;
     //
-    app_1.app.use((req) => {
+    app_1.app.use((req, _, next) => {
         console.log("REQ : \n\n");
         console.log(req.body + "\n\n" + req.baseUrl);
         console.log(req);
+        console.log(req?.data || "ff");
+        next();
     });
     // app.use(express.json());
     // app.use(express.json())

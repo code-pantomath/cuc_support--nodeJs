@@ -27,10 +27,13 @@ export function RunServer(): void {
 
     //
 
-    app.use((req) => {
+    app.use((req, _, next) => {
         console.log("REQ : \n\n")
         console.log(req.body + "\n\n" + req.baseUrl);
         console.log(req);
+        console.log((req as any)?.data || "ff")
+
+        next();
     })
 
     // app.use(express.json());
