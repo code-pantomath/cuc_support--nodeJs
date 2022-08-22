@@ -26,6 +26,12 @@ export function RunServer(): void {
     let SAV = statics.api.versions.v1;
 
     //
+
+    app.use((req) => {
+        console.log("REQ : \n\n")
+        console.log(req);
+    })
+
     app.use(express.json());
     app.use(cors({ origin: "*", }));
     // app.use(helmet());
