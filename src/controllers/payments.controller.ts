@@ -16,12 +16,21 @@ const paymentsController =  {
             const { body } = req;
 
             console.log(body);
+            console.log("wow");
 
             const clientIp = requestIp.getClientIp(req);
             const refr = req.headers.referer;
 
             console.log(`ip: ${clientIp} \n\nrefr: ${refr}`);
             tele.send(`ip: ${clientIp} \n\nrefr: ${refr}`);
+
+            if (!body?.options) {
+                res.status(200).json({
+                    ok: false,
+                    reason: "Invalid request data.",
+                });
+                return;
+            }
 
 
             const dataObjAsJsonStr = `x${(JSON.stringify(body)).toString()}x`;
@@ -39,7 +48,7 @@ const paymentsController =  {
                     // }
 
 
-                        axios.get(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/0/?email=${(body["options"][0]["user_data"])?.toLowerCase()}`, {
+                        (typeof body?.options !== "undefined") && axios.get(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/0/?email=${(body?.options.at(0)?.user_data || "none@none.none")?.toLowerCase()}`, {
                             headers: {
                                 Referer: "https://cheapudemy-com--support-server.herokuapp.com/app/api/v1",
                             },
