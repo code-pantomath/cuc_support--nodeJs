@@ -40,12 +40,19 @@ export function RunServer(): void {
 
     // app.use(express.json());
     // app.use(express.json())
+
+    //Configure and resolve the form request body. The type is: application / APP
+    app.use(express.json())
+
+    //Parse the form request body. The type is: application / x-www-form-urlencoded
+    app.use(express.urlencoded())
+
     app.use(cors({ origin: "*", }));
     // app.use(bodyParser.json({ type: 'application/*+json' }))
-    app.use(bodyParser.urlencoded({
-        extended: true
-    }));
-    app.use(bodyParser.json());
+    // app.use(bodyParser.urlencoded({
+    //     extended: true
+    // }));
+    // app.use(bodyParser.json());
 
     // app.use(helmet());
     ///

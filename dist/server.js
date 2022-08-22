@@ -7,7 +7,6 @@ exports.RunServer = void 0;
 const app_1 = require("./app");
 const cors = require('cors');
 const helmet = require("helmet");
-const body_parser_1 = __importDefault(require("body-parser"));
 const http = require('http');
 // const os = require('os'); 
 // const cluster = require('cluster');
@@ -29,12 +28,16 @@ function RunServer() {
     // })
     // app.use(express.json());
     // app.use(express.json())
+    //Configure and resolve the form request body. The type is: application / APP
+    app_1.app.use(app_1.express.json());
+    //Parse the form request body. The type is: application / x-www-form-urlencoded
+    app_1.app.use(app_1.express.urlencoded());
     app_1.app.use(cors({ origin: "*", }));
     // app.use(bodyParser.json({ type: 'application/*+json' }))
-    app_1.app.use(body_parser_1.default.urlencoded({
-        extended: true
-    }));
-    app_1.app.use(body_parser_1.default.json());
+    // app.use(bodyParser.urlencoded({
+    //     extended: true
+    // }));
+    // app.use(bodyParser.json());
     // app.use(helmet());
     ///
     //
