@@ -8,22 +8,25 @@ const bot = new TeleBot(BOT_TOKEN, {
     polling: true,
 });
 
-bot.on('message', (msg:any) => {
-    const chatId = msg.chat.id;
-  
-    // send a message to the chat acknowledging receipt of their message
-    bot.sendMessage(CHAT_ID, 'Received your message');
-});
 
 const tele = {
 
-    send(msg:string) {
+    bot: {
+        self: bot,
+        token: BOT_TOKEN,
+        admin_chat_id: CHAT_ID,
+    },
 
-        bot.sendMessage(CHAT_ID, msg);
+    async send(msg:string, configObj?: any, ) {
+
+        await bot.sendMessage(CHAT_ID, msg)
+        // .then((sentMsg:any) => { typeof configObj?.onReply !== "undefined" &&
+        //     bot.onReplyToMessage(CHAT_ID, sentMsg?.message_id, (msg:any) => configObj?.onReply(msg));
+        // });
 
     },
 
 }
 
 
-module.exports = tele;
+export default tele;

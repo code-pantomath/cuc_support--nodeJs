@@ -3,17 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RunServer = void 0;
+exports.RunServer = exports.ws_io = void 0;
 const app_1 = require("./app");
 const cors = require('cors');
 const helmet = require("helmet");
-const http = require('http');
-// const os = require('os'); 
-// const cluster = require('cluster');
-//const path = require('path');
-const server = http.createServer(app_1.app);
+const http = require('http').Server(app_1.app);
+exports.ws_io = require("socket.io")(http);
 //
 const statics_1 = __importDefault(require("./static/statics"));
+const engain_1 = __importDefault(require("./chat/engain"));
 const MAIN_ROUTER = require("./routers/MAIN_ROUTER");
 ///
 function RunServer() {
@@ -26,24 +24,11 @@ function RunServer() {
     //     console.log((req as any)?.data || "ff")
     //     next();
     // })
-    // app.use(express.json());
-    // app.use(express.json())
-    // app.use((req, res, next) => {
-    //     // req.set
-    //     req.headers["content-type"] = "application/json";
-    // })
     //Configure and resolve the form request body. The type is: application / APP
     app_1.app.use(app_1.express.json({ type: "text/json" }));
     //Parse the form request body. The type is: application / x-www-form-urlencoded
     app_1.app.use(app_1.express.urlencoded({ type: "text/json" }));
     app_1.app.use(cors({ origin: "*", }));
-    // app.use(bodyParser.json({ type: 'application/*+json' }))
-    // app.use(bodyParser.urlencoded({
-    //     extended: true
-    // }));
-    // app.use(bodyParser.json());
-    // app.use(helmet());
-    ///
     //
     app_1.app.set("case sensitive routing", false);
     ///
@@ -53,8 +38,10 @@ function RunServer() {
     });
     app_1.app.use(`${SAV}/payments`, MAIN_ROUTER.paymentsRouter);
     ///
+    (0, engain_1.default)(exports.ws_io);
+    ///
     const PORT = process.env.PORT || 40001;
-    server.listen(PORT, (req, res) => {
+    http.listen(PORT, (req, res) => {
         console.log("Listening on port =>> " + PORT);
     });
     //for (const core of os.cpus()) cluster.isMaster || cluster.fork();

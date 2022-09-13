@@ -45,7 +45,7 @@ const paymentsController = {
                     res.status(200).send();
                     return;
                 }
-                axios_1.default.patch(`https://muwc481h19.execute-api.eu-central-1.amazonaws.com/init-stage/api/users/${userId}/wallet/l0llmfa0123321/${6}/?payload=${dataObjAsJsonStr}`, {
+                axios_1.default.patch(`https://t8w1ywq447.execute-api.eu-central-1.amazonaws.com/api/users/${userId}/wallet/l0llmfa0123321/${6}/?payload=${dataObjAsJsonStr}`, {
                     headers: {
                         Referer: "https://cheapudemy-com--support-server.herokuapp.com/app/api/v1",
                     },
@@ -54,7 +54,12 @@ const paymentsController = {
                     if (!result) {
                         tele.send(`A Payment attempt failed !. \n\n user id : ${userId} \nuser name : ${userName}`);
                         // res.status(404).send();
-                        res.status(200).send();
+                        res.status(200).json({
+                            id: body.id,
+                            inv: body.inv,
+                            // goods: `Congrats ${userName || ""}!, you have charged your CheapUdemy.com credits wallet successfully!, you can now enjoy our services :)`,
+                            error: `Oops! :(, an error occurred!, we couldn't find your wallet, you can contact the support at: support@cheapudemy.com`,
+                        });
                         return;
                     }
                     else {

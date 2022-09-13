@@ -3,12 +3,17 @@ import { app, express, req_T_, res_T_, nextFunc_T_, } from "./app";
 const cors = require('cors');
 const helmet = require("helmet");
 
-const http = require('http');
+const http = require('http').Server(app);
 // const os = require('os'); 
 // const cluster = require('cluster');
 //const path = require('path');
 
-const server = http.createServer(app);
+// const server = http.createServer(app);
+
+import { Socket, } from "socket.io";
+
+export const ws_io = require("socket.io")(http);
+
 
 //
 import statics from './static/statics';
@@ -17,6 +22,7 @@ import statics from './static/statics';
 
 //
 import { IMAIN_ROUTER } from "./routers/MAIN_ROUTER"
+import RunChatWSEngain from "./chat/engain";
 const MAIN_ROUTER:IMAIN_ROUTER = require("./routers/MAIN_ROUTER");
 ///
 
@@ -37,14 +43,6 @@ export function RunServer(): void {
     // })
 
 
-    // app.use(express.json());
-    // app.use(express.json())
-
-    // app.use((req, res, next) => {
-    //     // req.set
-    //     req.headers["content-type"] = "application/json";
-    // })
-
     //Configure and resolve the form request body. The type is: application / APP
     app.use(express.json({type:"text/json"}))
 
@@ -52,14 +50,8 @@ export function RunServer(): void {
     app.use(express.urlencoded({ type: "text/json" }))
 
     app.use(cors({ origin: "*", }));
-    // app.use(bodyParser.json({ type: 'application/*+json' }))
-    // app.use(bodyParser.urlencoded({
-    //     extended: true
-    // }));
-    // app.use(bodyParser.json());
 
-    // app.use(helmet());
-    ///
+
 
     //
     app.set("case sensitive routing", false);
@@ -75,11 +67,17 @@ export function RunServer(): void {
 
     app.use(`${SAV}/payments`, MAIN_ROUTER.paymentsRouter);
 
+
+    
     ///
+    RunChatWSEngain(ws_io);
+    ///
+
+
 
     const PORT = process.env.PORT || 40001;
     
-    server.listen(PORT, (req:req_T_, res:res_T_) => {
+    http.listen(PORT, (req:req_T_, res:res_T_) => {
         console.log("Listening on port =>> " + PORT);
     });
 

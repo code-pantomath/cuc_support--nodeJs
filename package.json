@@ -2,7 +2,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc",
-    "start": "pm2 start dist/index.js -f -i max & pm2 save"
+    "start": "pm2 start dist/index.js -f -i max & pm2 save",
+    "buildRun": "npx tsc && node dist/index.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
@@ -16,9 +17,11 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "helmet": "^5.1.1",
+    "mongoose": "^6.6.0",
     "node-telegram-bot-api": "^0.58.0",
     "pm2": "^5.2.0",
-    "request-ip": "^3.3.0"
+    "request-ip": "^3.3.0",
+    "socket.io": "^4.5.2"
   },
   "name": "cheap-udemy-.com-supporter-node-server-01",
   "version": "1.0.0",
