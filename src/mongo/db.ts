@@ -52,7 +52,7 @@ const db = {
             },
 
             async getAllMsgs(USER_ID:string|number) {
-                return (await chats_Model.findOne({userId: USER_ID}) as any)?.msgs;
+                return (await chats_Model.findOne({userId: USER_ID}) as any)?.msgs || [{ msg: "Any questions? 😀", kind: "support", date: new Date().toDateString(), }];
             },
 
         },

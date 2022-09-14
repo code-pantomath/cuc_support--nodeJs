@@ -78,6 +78,8 @@ export default function RunChatWSEngain(io: any) {
                 |USERID|${userId}|USERID|
                 |EMAIL|${userEmail}|EMAIL|
                 
+                ------------
+
                 
                 ${msg}
                 `
@@ -100,7 +102,7 @@ export default function RunChatWSEngain(io: any) {
                             msgObj: {
                                 msg,
                                 kind: "user",
-                                date: new Date().getDate(),
+                                date: new Date().toDateString(),
                             },
                         })
                         // .finally(() => db.disconnect()); // NOT GOOD PRACTICE!!
@@ -126,7 +128,7 @@ export default function RunChatWSEngain(io: any) {
                     msgObj: {
                         msg,
                         kind: "support",
-                        date: new Date().getDate(),
+                        date: new Date().toDateString(),
                     }
                 }).catch((err) => console.error(err));
             }
@@ -140,7 +142,7 @@ export default function RunChatWSEngain(io: any) {
             // socket.removeAllListeners("Support_Msg__Received");
             // socket.removeAllListeners('disconnect');
             // io.removeAllListeners('connection');
-            // socket.removeAllListeners();
+            // socket.removeAllListeners(); /// NOT GOOOD!
 
 
             isRunChatTeleBotListenerAllowed = false;
