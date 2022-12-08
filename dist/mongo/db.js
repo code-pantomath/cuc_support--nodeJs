@@ -12,7 +12,7 @@ const db = {
         if (mongoose_1.default.connection.readyState === 1)
             return;
         await mongoose_1.default.connect(access_details_1.DB_CONNECTION_STRING);
-        mongoose_1.default.connection.once("open", () => console.log("Connection established with chat db.")); // Only once fist connection! because of ( .once() )
+        mongoose_1.default.connection.once("open", () => console.log("Connection established with chat db."));
         mongoose_1.default.connection.on("error", (err) => console.error("db connection error : ", err));
     },
     async disconnect() {
@@ -22,14 +22,12 @@ const db = {
         console.log("Connection closed with db.");
     },
     checkIfIsConnected() {
-        // return !([0,2,3,99].includes(mongoose.connection.readyState))
         return mongoose_1.default.connection.readyState === 1;
     },
     docs: {
         chats: {
             async create(dataObj) {
                 await chats_mongo_1.default.findOne({ userId: dataObj?.userId }).then(async (result) => {
-                    // if (!result) return await chats_Model.create({...Util__OmitObjProp("msg", dataObj), msgs: []});
                     if (!result)
                         await chats_mongo_1.default.create({ ...(0, Methods_1.Util__OmitObjProp)("msg", dataObj), msgs: [] });
                     else
