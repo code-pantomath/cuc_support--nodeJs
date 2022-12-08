@@ -23,12 +23,6 @@ const chat_Schema = new mongoose_1.default.Schema({
         default: [],
     },
 });
-// const chatMsg_Schema = new mongoose.Schema({
-//     msg: {
-//         type: String,
-//         required: true,
-//     },
-//     date: Date,
-// });
+
 const chats_Model = mongoose_1.default.model("Chat_Schema", chat_Schema);
 exports.default = chats_Model;
