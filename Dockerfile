@@ -8,8 +8,8 @@ COPY Procfile ./
 
 RUN npm install
 
-COPY src/ src/
-RUN npm run build
+# COPY src/ src/
+COPY dist/ dist/
 
 USER node
 
