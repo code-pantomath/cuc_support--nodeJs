@@ -2,4 +2,4 @@ The secondary cuc project minimal back-end to handle the support live chat (inte
 
 (Obsolete Project 😓)
 
-- This project uses Node.js, Socket.io, Mongodb, Mongoose, telegram-api-package.
+- This Node.js project uses Socket.io, Mongodb, Mongoose, node-telegram-bot-api.
