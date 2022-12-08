@@ -1,4 +1,4 @@
-The secondary cuc project back-end to handle the support live chat (integrated with telegram api in order to reply from a personal phone) & external third-party payments.  
+The secondary cuc project minimal back-end to handle the support live chat (integrated with telegram api in order to reply from a personal phone) & external third-party payments.  
 
 (Obsolete Project 😓)
 
