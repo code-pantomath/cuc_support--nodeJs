@@ -15,15 +15,18 @@ const db = {
         mongoose_1.default.connection.once("open", () => console.log("Connection established with chat db."));
         mongoose_1.default.connection.on("error", (err) => console.error("db connection error : ", err));
     },
+    
     async disconnect() {
         if (mongoose_1.default.connection.readyState !== 1)
             return;
         await mongoose_1.default.disconnect();
         console.log("Connection closed with db.");
     },
+    
     checkIfIsConnected() {
         return mongoose_1.default.connection.readyState === 1;
     },
+    
     docs: {
         chats: {
             async create(dataObj) {
@@ -35,6 +38,7 @@ const db = {
                 })
                     .catch(err => console.log(err));
             },
+            
             async addMsg({ userId: USER_ID, msgObj }) {
                 await chats_mongo_1.default.findOne({ userId: USER_ID }).then((result) => {
                     if (result) {
@@ -47,10 +51,13 @@ const db = {
                 })
                     .catch(err => console.log(err));
             },
+            
             async getAllMsgs(USER_ID) {
                 return (await chats_mongo_1.default.findOne({ userId: USER_ID }))?.msgs;
             },
+            
         },
+        
     },
 };
 exports.default = db;
